@@ -1,5 +1,6 @@
 package hu.elte.alkfejl.rental.app.model;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,34 +10,36 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "PARK")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class User extends BaseEntity {
+public class Park extends BaseEntity {
 
     @Column(nullable = false, unique = true)
-    private String username;
-    
-    @Column(nullable = false)
-    private String realname;
-
+    private String parkname;
 
     @Column(nullable = false, unique = true)
-    private String email;
+    private String adress;
 
     @Column(nullable = false)
-    private String password;
+    @OneToMany
+    @JoinColumn(name="HOMEID")
+    private List<Cars> cars;
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = true)
     private Role role;
 
-    public enum Role {
-        GUEST, USER, ADMIN, PREMIUM
+    private enum Role {
+        PREMIUM, STANDARD
     }
 }

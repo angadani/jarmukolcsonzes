@@ -12,31 +12,30 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "CARS")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class User extends BaseEntity {
+public class Cars extends BaseEntity {
 
-    @Column(nullable = false, unique = true)
-    private String username;
+    @Column(nullable = false)
+    private String make;
     
     @Column(nullable = false)
-    private String realname;
-
-
+    private String model;
+        
     @Column(nullable = false, unique = true)
-    private String email;
-
+    private String plate;
+    
     @Column(nullable = false)
-    private String password;
+    private String homeID;
     
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, unique = true)
-    private Role role;
+    @Column(nullable = false)
+    private Status status;
 
-    public enum Role {
-        GUEST, USER, ADMIN, PREMIUM
+    private enum Status {
+        IN, OUT
     }
 }

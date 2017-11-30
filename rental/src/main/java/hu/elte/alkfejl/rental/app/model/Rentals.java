@@ -11,32 +11,36 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
+import java.util.Date;
+
+
 @Entity
-@Table(name = "USERS")
+@Table(name = "RENTALS")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class User extends BaseEntity {
+public class Rentals extends BaseEntity {
 
-    @Column(nullable = false, unique = true)
+    
+    @Column(nullable = false)
     private String username;
     
-    @Column(nullable = false)
-    private String realname;
-
-
-    @Column(nullable = false, unique = true)
-    private String email;
 
     @Column(nullable = false)
-    private String password;
+    private String car;
+
+    @Column(nullable = false)
+    private Date dateFrom;
+
+    @Column(nullable = false)
+    private Date dateTo;
     
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, unique = true)
-    private Role role;
+    @Column(nullable = false)
+    private State role;
 
-    public enum Role {
-        GUEST, USER, ADMIN, PREMIUM
+    private enum State {
+        OUT, DONE, EXPIRED
     }
 }
