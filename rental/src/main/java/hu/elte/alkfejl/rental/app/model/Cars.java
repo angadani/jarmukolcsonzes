@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +30,7 @@ public class Cars extends BaseEntity {
     private String plate;
     
     @Column(nullable = false)
+    @JoinColumn(name="ID")
     private String homeID;
     
     @Enumerated(EnumType.STRING)

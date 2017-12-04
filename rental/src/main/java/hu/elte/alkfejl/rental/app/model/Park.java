@@ -1,5 +1,6 @@
 package hu.elte.alkfejl.rental.app.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,9 +32,8 @@ public class Park extends BaseEntity {
     private String adress;
 
     @Column(nullable = false)
-    @OneToMany
-    @JoinColumn(name="HOMEID")
-    private List<Cars> cars;
+    @OneToMany(mappedBy = "homeID")
+    private List<Cars> cars = new ArrayList<Cars>();
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = true)
