@@ -40,7 +40,7 @@ public class Rentals extends BaseEntity {
     @Column(nullable = false)
     private State role;
 
-    private enum State {
+    public enum State {
         OUT, DONE, EXPIRED
     }
 }
