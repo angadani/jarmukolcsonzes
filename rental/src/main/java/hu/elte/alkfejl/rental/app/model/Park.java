@@ -2,6 +2,7 @@ package hu.elte.alkfejl.rental.app.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,9 +32,9 @@ public class Park extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String adress;
 
-    @Column(nullable = false)
-    @OneToMany(mappedBy = "homeID")
-    private List<Cars> cars = new ArrayList<Cars>();
+    @JoinColumn
+    @OneToMany(targetEntity = Cars.class)
+    private List<Cars> cars;
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = true)

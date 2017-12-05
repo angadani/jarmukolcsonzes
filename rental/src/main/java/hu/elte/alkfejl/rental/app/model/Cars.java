@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,9 +30,9 @@ public class Cars extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String plate;
     
-    @Column(nullable = false)
-    @JoinColumn(name="ID")
-    private String homeID;
+    @JoinColumn
+    @OneToOne(targetEntity = Park.class)
+    private Park homeID;
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

@@ -5,13 +5,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -22,23 +21,24 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 public class Rentals extends BaseEntity {
 
-    
-    @Column(nullable = false)
-    private String username;
+    @JoinColumn
+    @ManyToOne(targetEntity = User.class)
+    private User user;
     
 
-    @Column(nullable = false)
-    private String car;
+    @JoinColumn
+    @OneToOne(targetEntity = Cars.class)
+    private Cars car;
 
     @Column(nullable = false)
-    private Date dateFrom;
+    private Timestamp dateFrom;
 
     @Column(nullable = false)
     private Date dateTo;
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private State role;
+    private State state;
 
     public enum State {
         OUT, DONE, EXPIRED

@@ -37,18 +37,16 @@ public class RentalsService {
         return Collections.emptyList();
     }
 
-    public Rentals create(Rentals rental, Cars car, User user) {
+    public Rentals create(Rentals rental) {
         rental.setState(Rentals.State.OUT);
-        rental.setCar(car);
-        rental.setUser(user);
-        rental.setTimestamp(Timestamp.valueOf(LocalDateTime.now()));
+        rental.setDateFrom(Timestamp.valueOf(LocalDateTime.now()));
         return rentalRepository.save(rental);
     }
 
     public Rentals update(int id, Rentals rental) {
         Rentals currentRental = rentalRepository.findOne(id);
 
-        currentRental.setStatus(rental.getStatus());
+        currentRental.setState(rental.getState());
         return rentalRepository.save(currentRental);
     }
 
