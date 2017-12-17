@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Rental } from "../../rental";
+
 
 @Component({
   selector: 'rental-list-item',
@@ -7,11 +9,21 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RentalListItemComponent implements OnInit {
 
-  @Input() rental: string;
+  @Input() rental: Rental;
+
+  @Output() delete: EventEmitter<Rental> = new EventEmitter<Rental>();
 
   constructor() { }
 
   ngOnInit() {
   }
+
+deleteMe() {
+if (!this.rental.isDone) {
+        this.rental.isDone = true;
+} else {
+        this.delete.emit(this.rental);
+      }
+}
 
 }

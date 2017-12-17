@@ -1,6 +1,30 @@
-<div class="rentalInput">
-  <input type="text" placeholder="mit szeretnél kikölcsönözni?">
-  <input type="text" placeholder="mikor szeretnéd?">
-  <input type="text" placeholder="meddig szeretnéd?">
-  <input type="button" value="KÜLDÉS">
-</div>
+<form #form="ngForm" (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="car">Milyen autót szeretnél kivenni?</label>
+      <input type="text" placeholder="Pl. HUMMER"
+      required
+      name="car"
+      [(ngModel)]="model.car"
+      #car="ngModel"
+      />
+      <div *ngIf="car.invalid && car.touched" >
+          <span *ngIf="car.errors.required">Kötelező mező</span>
+      </div>
+
+    </div>
+    <div class="form-group">
+        <label for="start">Mikor?</label>
+        <input type="date" name="start" required [(ngModel)]="model.start" #start="ngModel">
+        <label for="end">Meddig?</label>
+        <input type="date" name="end" required [(ngModel)]="model.end" #end="ngModel">
+        <div *ngIf="start.invalid && start.touched" >
+          <span *ngIf="start.errors.required">Kötelező mező</span>
+        </div>
+        <div *ngIf="end.invalid && end.touched" >
+            <span *ngIf="end.errors.required">Kötelező mező</span>
+        </div>
+    
+    </div>
+    <input type="submit" value="Küldés" />
+</form>
+

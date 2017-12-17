@@ -1,6 +1,7 @@
 <div class="rentalList">
     <rental-list-item
-      *ngFor="let rental of rentals"
-      [rental]="rental">
+      *ngFor="let rental of rentalListService.rentals"
+      [rental]="rental"
+      (delete) = "rentalListService.deleteRental($event);">
     </rental-list-item>
 </div>

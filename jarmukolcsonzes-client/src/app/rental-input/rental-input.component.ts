@@ -1,4 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+import { RentalListService } from '../rental-list.service';
+import { Rental } from "../../rental";
+
+class RentalForm {
+  car: string;
+  start: string;
+  end: string;
+}
 
 @Component({
   selector: 'rental-input',
@@ -7,9 +17,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RentalInputComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('form') form;
+
+
+  model: RentalForm;
+
+  constructor(public rentalListService: RentalListService){}
+
 
   ngOnInit() {
+    this.model = { car: '', start: '', end: '' }
+  }
+
+  onSubmit(){
+    if(this.form.valid){
+      this.rentalListService.addRental(this.model.car, this.model.start, this.model.end);
+    }
   }
 
 }
