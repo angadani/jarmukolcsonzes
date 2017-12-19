@@ -1,6 +1,10 @@
 <div class="header">
   <br>
+  <a routerLink="login">Bejelentkezés</a>
   <a routerLink="rental-list" >Kölcsönzések</a>
   <a routerLink="rental-input" >Új kölcsönzés</a>
   <br>
+  <div *ngIf="authService.isLoggedIn" class="authorized">
+      <button mat-button (click)="authService.logout()">Logout</button>
+  </div>
 </div>

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 
 import { AppComponent } from './app.component';
@@ -10,22 +11,28 @@ import { RentalListItemComponent } from './rental-list-item/rental-list-item.com
 import { RentalListService } from './rental-list.service';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './/app-routing.module';
-
-
+import { AuthService } from './auth.service';
+import { AuthGuardService } from './auth-guard.service';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
     RentalListComponent,
     RentalInputComponent,
     RentalListItemComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
-  providers: [RentalListService],
+  providers: [RentalListService,
+    AuthService,
+    AuthGuardService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

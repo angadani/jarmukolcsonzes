@@ -1,7 +1,20 @@
 <div class="rentalList">
-    <rental-list-item
-      *ngFor="let rental of rentalListService.rentals"
-      [rental]="rental"
-      (delete) = "rentalListService.deleteRental($event);">
-    </rental-list-item>
+    <table>
+   <thead>
+     <tr>
+       <th>Autó</th>
+       <th>Visszahozott</th>
+       <th>Start</th>
+       <th>Vége</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr *ngFor="let rental of rentalListService.rentals">
+       <td>{{rental.text}}</td>
+       <td>{{rental.isDone}}</td>
+       <td>{{rental.start}}</td>
+       <td>{{rental.end}}</td>
+     </tr>
+   </tbody>
+ </table>
 </div>
